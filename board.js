@@ -37,3 +37,23 @@ var horizontalWin = function(board, player) {
     }
   }
 };
+
+var verticalWin = function(board, player) {
+  winner = 0;
+  for(var column = 0; column <= board.length; column++) {
+    for(var row = 0; row < board.length; row++) {
+      if(board[row][column] === player) {
+        winner ++;
+        if(winner === 4) {
+          return true;
+        }
+      } else {
+        winner = 0;
+      }
+    }
+  }
+};
+
+var hasWin = function(board, player){
+  return horizontalWin(player) || verticalWin(player);
+};
