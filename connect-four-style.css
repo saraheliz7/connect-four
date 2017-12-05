@@ -43,7 +43,21 @@ h3 {
   border-radius: 1000%;
   position: absolute;
   margin-top: -55px;
-  margin-left: -2px;
+  margin-left: -3.5px;
+}
+
+.game-over {
+  position: fixed;
+  text-align: center;
+  width: 100%;
+  margin-top: 22%;
+  z-index: 100;
+}
+
+.winner-message {
+  font-family: Francois One, sans-serif;
+  font-size: 250px;
+  color: #db0f0f;
 }
 
 .yellow {
@@ -52,7 +66,7 @@ h3 {
   border-radius: 1000%;
   position: absolute;
   margin-top: -55px;
-  margin-left: -2px;
+  margin-left: -3.5px;
 }
 
 .hidden-red {
