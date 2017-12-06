@@ -1,14 +1,28 @@
 var count = 0;
 var gameOver = false;
 
-
-var move = function(row, column, board) {
-  if(gameOver === false) {
-    setCellColor(board, column);
-    drawBoard(board);
+var checkForWinner = function(board, view) {
+  var player = board.winner();
+  if(player) {
+    view.showWinner(player);
+    gameOver = true;
   }
 };
 
+
+
+var move = function(row, column, board, view) {
+  if(gameOver === false && board.getGrid()[row][column] === "") {
+    board.setCellColor(column);
+    view.drawBoard(board);
+    checkForWinner(board, view);
+  }
+};
+
+
+
 window.onload = function(){
-  attachBoardClickHandlers(board, move)
+  var board = new Board();
+  var boardView = new BoardView();
+  boardView.attachBoardClickHandlers(board, move)
 };

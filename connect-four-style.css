@@ -50,14 +50,14 @@ h3 {
   position: fixed;
   text-align: center;
   width: 100%;
-  margin-top: 22%;
+  margin-top: 10%;
   z-index: 100;
 }
 
 .winner-message {
   font-family: Francois One, sans-serif;
-  font-size: 250px;
-  color: #db0f0f;
+  font-size: 225px;
+  color: #000000;
 }
 
 .yellow {
