@@ -1,227 +1,194 @@
-describe("horizontalWin", function(){
-
-  describe("returns true when four of the same color in the ", function(){
-    it("bottom right of board", function(){
-      var board = [
-        ["", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", ""],
-        ["", "", "", "red", "red", "red", "red"]
-      ];
-
-      var hasWin = horizontalWin(board, "red");
-      expect(hasWin).to.be.true;
+describe("Board", function(){
+  var board;
+  beforeEach(function(){
+    board = new Board();
+  });
+  describe("winner()", function(){
+    describe("returns winning color when four of the same color are horizontally in the ", function(){
+      it("top right of the board", function(){
+        var grid = [
+          ["", "", "", "red", "red", "red", "red"],
+          ["", "", "", "", "", "", ""],
+          ["", "", "", "", "", "", ""],
+          ["", "", "", "", "", "", ""],
+          ["", "", "", "", "", "", ""],
+          ["", "", "", "", "", "", ""]
+        ];
+        board.setGrid(grid);
+        var winningColor = board.winner();
+        expect(winningColor).to.equal("red");
+      });
+      it("bottom right of the board", function(){
+        var grid = [
+          ["", "", "", "", "", "", ""],
+          ["", "", "", "", "", "", ""],
+          ["", "", "", "", "", "", ""],
+          ["", "", "", "", "", "", ""],
+          ["", "", "", "", "", "", ""],
+          ["", "", "", "red", "red", "red", "red"]
+        ];
+        board.setGrid(grid);
+        var winningColor = board.winner();
+        expect(winningColor).to.equal("red");
+      });
+      it("top left of the board", function(){
+        var grid = [
+          ["red", "red", "red", "red", "", "", ""],
+          ["", "", "", "", "", "", ""],
+          ["", "", "", "", "", "", ""],
+          ["", "", "", "", "", "", ""],
+          ["", "", "", "", "", "", ""],
+          ["", "", "", "", "", "", ""]
+        ];
+        board.setGrid(grid);
+        var winningColor = board.winner();
+        expect(winningColor).to.equal("red");
+      });
+      it("bottom left of the board", function(){
+        var grid = [
+          ["", "", "", "", "", "", ""],
+          ["", "", "", "", "", "", ""],
+          ["", "", "", "", "", "", ""],
+          ["", "", "", "", "", "", ""],
+          ["", "", "", "", "", "", ""],
+          ["red", "red", "red", "red", "", "", ""]
+        ];
+        board.setGrid(grid);
+        var winningColor = board.winner();
+        expect(winningColor).to.equal("red");
+      });
+      it("middle of the board", function(){
+        var grid = [
+          ["", "", "", "", "", "", ""],
+          ["", "", "", "", "", "", ""],
+          ["", "red", "red", "red", "red", "", ""],
+          ["", "", "", "", "", "", ""],
+          ["", "", "", "", "", "", ""],
+          ["", "", "", "", "", "", ""]
+        ];
+        board.setGrid(grid);
+        var winningColor = board.winner();
+        expect(winningColor).to.equal("red");
+      });
     });
-    it("top right of board", function(){
-      var board = [
-        ["", "", "", "red", "red", "red", "red"],
+    it("returns red when there are four reds in a row hoizontally", function(){
+      var grid = [
         ["", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", ""],
+        ["", "red", "red", "red", "red", "", ""],
+        ["", "", "", "", "", "", ""]
+      ];
+      board.setGrid(grid);
+      var winningColor = board.winner();
+      expect(winningColor).to.equal("red");
+    });
+    it("returns yellow when there are four yellows in a row horizontally", function(){
+      var grid = [
+        ["", "", "", "", "", "", ""],
+        ["", "", "", "yellow", "yellow", "yellow", "yellow"],
         ["", "", "", "", "", "", ""],
         ["", "", "", "", "", "", ""],
         ["", "", "", "", "", "", ""],
         ["", "", "", "", "", "", ""]
       ];
-
-      var hasWin = horizontalWin(board, "red");
-      expect(hasWin).to.be.true;
+      board.setGrid(grid);
+      var winningColor = board.winner();
+      expect(winningColor).to.equal("yellow");
     });
-    it("top left of board", function(){
-      var board = [
-        ["red", "red", "red", "red", "", "", ""],
+    describe("returns winning color when four of the same color are vertically in the ", function(){
+      it("top right of the board", function(){
+        var grid = [
+          ["", "", "", "", "", "", "red"],
+          ["", "", "", "", "", "", "red"],
+          ["", "", "", "", "", "", "red"],
+          ["", "", "", "", "", "", "red"],
+          ["", "", "", "", "", "", ""],
+          ["", "", "", "", "", "", ""]
+        ];
+        board.setGrid(grid);
+        var winningColor = board.winner();
+        expect(winningColor).to.equal("red");
+      });
+      it("bottom right of the board", function(){
+        var grid = [
+          ["", "", "", "", "", "", ""],
+          ["", "", "", "", "", "", ""],
+          ["", "", "", "", "", "", "red"],
+          ["", "", "", "", "", "", "red"],
+          ["", "", "", "", "", "", "red"],
+          ["", "", "", "", "", "", "red"]
+        ];
+        board.setGrid(grid);
+        var winningColor = board.winner();
+        expect(winningColor).to.equal("red");
+      });
+      it("top left of the board", function(){
+        var grid = [
+          ["red", "", "", "", "", "", ""],
+          ["red", "", "", "", "", "", ""],
+          ["red", "", "", "", "", "", ""],
+          ["red", "", "", "", "", "", ""],
+          ["", "", "", "", "", "", ""],
+          ["", "", "", "", "", "", ""]
+        ];
+        board.setGrid(grid);
+        var winningColor = board.winner();
+        expect(winningColor).to.equal("red");
+      });
+      it("bottom left of the board", function(){
+        var grid = [
+          ["", "", "", "", "", "", ""],
+          ["", "", "", "", "", "", ""],
+          ["red", "", "", "", "", "", ""],
+          ["red", "", "", "", "", "", ""],
+          ["red", "", "", "", "", "", ""],
+          ["red", "", "", "", "", "", ""]
+        ];
+        board.setGrid(grid);
+        var winningColor = board.winner();
+        expect(winningColor).to.equal("red");
+      });
+      it("middle of the board", function(){
+        var grid = [
+          ["", "", "", "", "", "", ""],
+          ["", "", "", "red", "", "", ""],
+          ["", "", "", "red", "", "", ""],
+          ["", "", "", "red", "", "", ""],
+          ["", "", "", "red", "", "", ""],
+          ["", "", "", "", "", "", ""]
+        ];
+        board.setGrid(grid);
+        var winningColor = board.winner();
+        expect(winningColor).to.equal("red");
+      });
+    });
+    it("returns red when there are four reds in a row vertically", function(){
+      var grid = [
         ["", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", ""],
+        ["", "", "", "", "", "red", ""],
+        ["", "", "", "", "", "red", ""],
+        ["", "", "", "", "", "red", ""],
+        ["", "", "", "", "", "red", ""],
         ["", "", "", "", "", "", ""]
       ];
-
-      var hasWin = horizontalWin(board, "red");
-      expect(hasWin).to.be.true;
+      board.setGrid(grid);
+      var winningColor = board.winner();
+      expect(winningColor).to.equal("red");
     });
-    it("bottom left of board", function(){
-      var board = [
+    it("returns yellow when there are four yellows in a row vertically", function(){
+      var grid = [
         ["", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", ""],
-        ["red", "red", "red", "red", "", "", ""]
-      ];
-
-      var hasWin = horizontalWin(board, "red");
-      expect(hasWin).to.be.true;
-    });
-    it("middle of the board", function(){
-      var board = [
-        ["", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", ""],
-        ["", "", "red", "red", "red", "red", ""],
-        ["", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", "yellow"],
+        ["", "", "", "", "", "", "yellow"],
+        ["", "", "", "", "", "", "yellow"],
+        ["", "", "", "", "", "", "yellow"],
         ["", "", "", "", "", "", ""]
       ];
-
-      var hasWin = horizontalWin(board, "red");
-      expect(hasWin).to.equal(true);
+      board.setGrid(grid);
+      var winningColor = board.winner();
+      expect(winningColor).to.equal("yellow");
     });
-  });
-
-  it("returns true when four red spaces filled in a row", function(){
-    var board = [
-      ["", "", "", "", "", "", ""],
-      ["", "", "", "", "", "", ""],
-      ["", "", "", "", "", "", ""],
-      ["", "red", "red", "red", "red", "", ""],
-      ["", "", "", "", "", "", ""],
-      ["", "", "", "", "", "", ""]
-    ];
-
-    var hasWin = horizontalWin(board, "red");
-    expect(hasWin).to.be.true;
-  });
-  it("returns true when four yellow spaces filled in a row", function(){
-    var board = [
-      ["", "", "", "", "", "", ""],
-      ["", "yellow", "yellow", "yellow", "yellow", "", ""],
-      ["", "", "", "", "", "", ""],
-      ["", "", "", "", "", "", ""],
-      ["", "", "", "", "", "", ""],
-      ["", "", "", "", "", "", ""]
-    ];
-
-    var hasWin = horizontalWin(board, "yellow");
-    expect(hasWin).to.be.true;
-  });
-});
-
-describe("verticalWin", function(){
-  describe("returns true when four of the same color in the ", function(){
-    it("top left of the board", function(){
-      var board = [
-        ["red", "", "", "", "", "", ""],
-        ["red", "", "", "", "", "", ""],
-        ["red", "", "", "", "", "", ""],
-        ["red", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", ""]
-      ];
-      var hasWin = verticalWin(board, "red");
-      expect(hasWin).to.be.true;
-    });
-    it("bottom left of the board", function(){
-      var board = [
-        ["", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", ""],
-        ["red", "", "", "", "", "", ""],
-        ["red", "", "", "", "", "", ""],
-        ["red", "", "", "", "", "", ""],
-        ["red", "", "", "", "", "", ""]
-      ];
-      var hasWin = verticalWin(board, "red");
-      expect(hasWin).to.be.true;
-    });
-    it("top right of the board", function(){
-      var board = [
-        ["", "", "", "", "", "", "red"],
-        ["", "", "", "", "", "", "red"],
-        ["", "", "", "", "", "", "red"],
-        ["", "", "", "", "", "", "red"],
-        ["", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", ""]
-      ];
-      var hasWin = verticalWin(board, "red");
-      expect(hasWin).to.be.true;
-    });
-    it("bottom right of the board", function(){
-      var board = [
-        ["", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", "red"],
-        ["", "", "", "", "", "", "red"],
-        ["", "", "", "", "", "", "red"],
-        ["", "", "", "", "", "", "red"]
-      ];
-      var hasWin = verticalWin(board, "red");
-      expect(hasWin).to.be.true;
-    });
-    it("middle of the board", function(){
-      var board = [
-        ["", "", "", "", "", "", ""],
-        ["", "", "", "red", "", "", ""],
-        ["", "", "", "red", "", "", ""],
-        ["", "", "", "red", "", "", ""],
-        ["", "", "", "red", "", "", ""],
-        ["", "", "", "", "", "", ""]
-      ];
-      var hasWin = verticalWin(board, "red");
-      expect(hasWin).to.be.true;
-    });
-    it("middle of right hand column of the board", function(){
-      var board = [
-        ["", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", "red"],
-        ["", "", "", "", "", "", "red"],
-        ["", "", "", "", "", "", "red"],
-        ["", "", "", "", "", "", "red"],
-        ["", "", "", "", "", "", ""]
-      ];
-      var hasWin = verticalWin(board, "red");
-      expect(hasWin).to.be.true;
-    });
-  });
-  it("returns true when four red spaces filled in a column", function(){
-    var board = [
-      ["", "", "", "", "", "", ""],
-      ["", "", "", "", "", "", "red"],
-      ["", "", "", "", "", "", "red"],
-      ["", "", "", "", "", "", "red"],
-      ["", "", "", "", "", "", "red"],
-      ["", "", "", "", "", "", ""]
-    ];
-    var hasWin = verticalWin(board, "red");
-    expect(hasWin).to.be.true;
-  });
-  it("returns true when four yellow spaces filled in a column", function(){
-    var board = [
-      ["", "", "", "", "", "", ""],
-      ["", "", "", "", "yellow", "", ""],
-      ["", "", "", "", "yellow", "", ""],
-      ["", "", "", "", "yellow", "", ""],
-      ["", "", "", "", "yellow", "", ""],
-      ["", "", "", "", "", "", ""]
-    ];
-    var hasWin = verticalWin(board, "yellow");
-    expect(hasWin).to.be.true;
-  });
-});
-
-describe("hasWin", function(){
-  it("returns true when horizontalWin is true", function(){
-    var board = [
-      ["", "", "", "", "", "", ""],
-      ["", "", "", "", "", "", ""],
-      ["", "", "", "", "", "", ""],
-      ["", "", "", "", "", "", ""],
-      ["", "", "", "", "", "", ""],
-      ["", "", "", "red", "red", "red", "red"]
-    ];
-
-    var hasHorizontalWin = hasWin(board, "red");
-    expect(hasHorizontalWin).to.be.true;
-  });
-  it("returns true when verticalWin is true", function(){
-    var board = [
-      ["", "red", "", "", "", "", ""],
-      ["", "red", "", "", "", "", ""],
-      ["", "red", "", "", "", "", ""],
-      ["", "red", "", "", "", "", ""],
-      ["", "", "", "", "", "", ""],
-      ["", "", "", "", "", "", ""]
-    ];
-
-    var hasVerticalWin = hasWin(board, "red");
-    expect(hasVerticalWin).to.be.true;
   });
 });
