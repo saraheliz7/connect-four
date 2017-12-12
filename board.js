@@ -64,11 +64,39 @@ var Board = function(){
     return false;
   };
 
-  var hasWin = function(player){
-    return horizontalWin(player) || verticalWin(player);
+  var diagonalLeftWin = function(player) {
+    for(var row = 0; row <= grid.length - 4; row++) {
+      for(var column = 0; column < grid[row].length; column++) {
+        if(grid[row][column] === player
+        && grid[row + 1][column + 1] === player
+        && grid[row + 2][column + 2] === player
+        && grid[row + 3][column + 3] === player) {
+          return true;
+        }
+      }
+    }
   };
 
-  this.winner = function(){
+  var diagonalRightWin = function(player) {
+    for(var row = 0; row <= grid.length - 4; row ++) {
+      for(var column = 6; column >= 0; column--) {
+        if(grid[row][column] === player
+        && grid[row + 1][column - 1] === player
+        && grid[row + 2][column - 2] === player
+        && grid[row + 3][column - 3] === player) {
+          return true;
+        }
+      }
+    }
+  };
+
+
+  var hasWin = function(player){
+    return horizontalWin(player) || verticalWin(player) || diagonalLeftWin(player)
+    || diagonalRightWin(player);
+  };
+
+  this.winner = function() {
     if(hasWin("red")) {
       return "red";
     } else if(hasWin("yellow")) {
