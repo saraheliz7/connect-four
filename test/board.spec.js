@@ -354,5 +354,21 @@ describe("Board", function(){
         expect(winningColor).to.equal(false);
       });
     });
+    describe("special case ", function(){
+      it("returns false when these specific cells are filled", function(){
+        var grid = [
+          ["", "", "", "", "", "", "yellow"],
+          ["", "", "", "", "", "", "red"],
+          ["yellow", "", "yellow", "", "", "", "red"],
+          ["red", "", "yellow", "yellow", "", "", "red"],
+          ["red", "red", "red", "yellow", "", "yellow", "yellow"],
+          ["red", "red", "yellow", "red", "", "red", "yellow"]
+        ];
+        board.setGrid(grid);
+        var winningColor = board.winner();
+        expect(winningColor).to.equal(false);
+      });
+    });
   });
+
 });
