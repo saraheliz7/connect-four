@@ -19,10 +19,20 @@ var move = function(row, column, board, view) {
   }
 };
 
+var newGame = function(boardView, board) {
+  boardView.clearWinner();
+  board.clearBoard();
+  boardView.drawBoard(board);
+  gameOver = false;
+};
+
 
 
 window.onload = function(){
   var board = new Board();
   var boardView = new BoardView();
-  boardView.attachBoardClickHandlers(board, move)
+  boardView.attachBoardClickHandlers(board, move);
+  boardView.attachButtonClickHandler(function() {
+    newGame(boardView, board);
+  });
 };

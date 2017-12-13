@@ -7,6 +7,9 @@ var BoardView = function(){
       cell.querySelector(".red").classList.remove("hidden-red");
     } else if (color === "yellow") {
       cell.querySelector(".yellow").classList.remove("hidden-yellow");
+    } else {
+      cell.querySelector(".red").classList.add("hidden-red");
+      cell.querySelector(".yellow").classList.add("hidden-yellow");
     }
   };
 
@@ -37,6 +40,15 @@ var BoardView = function(){
         attachCellClickHandler(row, column, board, callback)
       }
     }
+  };
+
+  this.clearWinner = function(){
+    document.querySelector(".game-over").classList.add("hidden");
+  };
+
+  this.attachButtonClickHandler = function(callback) {
+    var button = document.querySelector(".new-game-button");
+    button.addEventListener("click", callback);
   };
 
 };
