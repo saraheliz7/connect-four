@@ -31,8 +31,8 @@ var Board = function(){
   };
 
   var horizontalWin = function(player) {
-    var winner = 0;
     for(var row = 0; row < grid.length; row++) {
+      var winner = 0;
       for(var column = 0; column < grid[row].length; column++) {
         if(grid[row][column] === player) {
           winner++;
@@ -48,8 +48,8 @@ var Board = function(){
   };
 
   var verticalWin = function(player) {
-    var winner = 0;
     for(var column = 0; column < grid[0].length; column++) {
+      var winner = 0;
       for(var row = 0; row < grid.length; row++) {
         if(grid[row][column] === player) {
           winner ++;

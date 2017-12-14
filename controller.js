@@ -25,14 +25,3 @@ var newGame = function(boardView, board) {
   boardView.drawBoard(board);
   gameOver = false;
 };
-
-
-
-window.onload = function(){
-  var board = new Board();
-  var boardView = new BoardView();
-  boardView.attachBoardClickHandlers(board, move);
-  boardView.attachButtonClickHandler(function() {
-    newGame(boardView, board);
-  });
-};

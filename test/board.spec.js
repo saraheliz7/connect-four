@@ -354,20 +354,69 @@ describe("Board", function(){
         expect(winningColor).to.equal(false);
       });
     });
-    describe("special case ", function(){
-      it("returns false when these specific cells are filled", function(){
+    describe("returns false when", function(){
+      it("there is four in a row horizontally between two rows", function(){
         var grid = [
-          ["", "", "", "", "", "", "yellow"],
+          ["", "", "", "", "", "", ""],
+          ["", "", "", "", "", "", ""],
+          ["", "", "", "", "", "", ""],
           ["", "", "", "", "", "", "red"],
-          ["yellow", "", "yellow", "", "", "", "red"],
-          ["red", "", "yellow", "yellow", "", "", "red"],
-          ["red", "red", "red", "yellow", "", "yellow", "yellow"],
-          ["red", "red", "yellow", "red", "", "red", "yellow"]
+          ["red", "red", "red", "", "", "", ""],
+          ["", "", "", "", "", "", ""]
         ];
         board.setGrid(grid);
         var winningColor = board.winner();
         expect(winningColor).to.equal(false);
       });
+      it("there are no players on the board", function(){
+        var grid = [
+          ["", "", "", "", "", "", ""],
+          ["", "", "", "", "", "", ""],
+          ["", "", "", "", "", "", ""],
+          ["", "", "", "", "", "", ""],
+          ["", "", "", "", "", "", ""],
+          ["", "", "", "", "", "", ""]
+        ];
+        board.setGrid(grid);
+        var winningColor = board.winner();
+        expect(winningColor).to.equal(false);
+      });
+      it("there is four in a row vertically between two columns", function(){
+        var grid = [
+          ["", "red", "", "", "", "", ""],
+          ["", "", "", "", "", "", ""],
+          ["", "", "", "", "", "", ""],
+          ["red", "", "", "", "", "", ""],
+          ["red", "", "", "", "", "", ""],
+          ["red", "", "", "", "", "", ""]
+        ];
+        board.setGrid(grid);
+        var winningColor = board.winner();
+        expect(winningColor).to.equal(false);
+      });
+    });
+  });
+  describe("clearBoard()", function(){
+    it("clears the board of all players", function(){
+      var grid = [
+        ["", "", "", "", "", "", "red"],
+        ["", "", "", "", "", "red", ""],
+        ["", "", "", "", "red", "", ""],
+        ["", "", "", "red", "", "", ""],
+        ["", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", ""]
+      ];
+      board.setGrid(grid);
+      board.clearBoard();
+      var cleared = board.getGrid();
+      expect(cleared).to.deep.equal([
+        ["", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", ""]
+      ]);
     });
   });
 
