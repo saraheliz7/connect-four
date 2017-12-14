@@ -1,11 +1,11 @@
 module.exports = function(config){
   config.set({
-    frameworks: ['mocha', 'chai'],
+    frameworks: ['mocha', 'chai', 'sinon'],
     reporters: ['progress'],
     browsers: ['Chrome'],
-    singleRun: true,
+    singleRun: false,
     colors: true,
-    autoWatch: false,
+    autoWatch: true,
     files: [
       'board.js',
       'board-view.js',
