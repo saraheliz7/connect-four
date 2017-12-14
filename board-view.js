@@ -1,4 +1,4 @@
-var BoardView = function(){
+var BoardView = function(document){
   var self = this;
 
   var showCellColor = function(row, column, color) {
